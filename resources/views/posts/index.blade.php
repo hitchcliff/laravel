@@ -22,33 +22,20 @@
       </form>
 
       @if ($posts -> count())
-      @foreach ($posts as $item)
-      <div class="mb-4">
-         <a href="" class="font-bold">{{ $item->user->name}}</a>
-         <span class="text-gray-600 text-sm">{{ $item->created_at->diffForHumans()}}</span>
-         <p class="mb-2">
-            {{ $item->body }}
-         </p>
+      @foreach ($posts as $post)
 
-         <div class="flex items-center">
-            <form action="" method="post" class="mr-1">
-               @csrf
-               <button type="submit" class="text-blue-500">Like</button>
-            </form>
-            <form action="" method="post" class="mr-1">
-               @csrf
-               <button type="submit" class="text-blue-500">
-                  Unlike
-               </button>
-            </form>
-            <span>{{ $item->likes->count()}} {{ Str::plural('like', $item->likes->count())}}</span>
-         </div>
-      </div>
+      {{-- post component --}}
+      <x-post :item="$post" />
+
       @endforeach
+
+      {{-- pagination --}}
       {{$posts->links()}}
+
       @else
       <p>There no posts</p>
       @endif
+
    </div>
 </div>
 @endsection
