@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SessionController;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -41,3 +42,12 @@ Route::get('/detach/role/{role_id}/user/{user_id}', function ($role_id, $user_id
 
     return "detached a role to {$user->name}";
 });
+
+
+/*
+|--------------------------------------------------------------------------
+| Session Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/session', [SessionController::class, 'index']);
